@@ -1,27 +1,66 @@
 <!DOCTYPE html>
-<html>
+<html lang="pt-BR">
 <head>
 	<meta charset="utf-8">
-	<meta http-equiv="X-UA-compatible" content="IE-edge">
-	<meta name="viewportsd" content="width=device-width, initial-scale=1.0">
-	<link rel="stylesheet" type="text/css" href="fontawesome/css/all.min.css">
-	<link rel="stylesheet" type="text/css" href="Style.css">
-	<title> Tela de Login </title>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	
+	<link rel="stylesheet" href="fontawesome/css/all.min.css">
+	<link rel="stylesheet" href="style.css">
+	
+	<title>Tela de Login</title>
 </head>
+
 <body>
- <div>
- 	<center>
- 	<h1> Login </h1>
- 	</center>
- 	<i class="fas fa-user"></i>
-  <input type="text" placeholder="Usuário">
-<br> <br>
-  <i class="fas fa-lock"></i>
-  <input type="password" placeholder="Senha">
-<br> <br>
-<center>
-  	<button> Acessar </button>
-</center>
+
+<div>
+	<center>
+		<h1>Login</h1>
+	</center>
+
+	<form id="loginForm">
+
+		<i class="fas fa-user"></i>
+		<input type="email" id="email" placeholder="Email">
+		<br><br>
+
+		<i class="fas fa-lock"></i>
+		<input type="password" id="senha" placeholder="Senha">
+		<br><br>
+
+		<p id="mensagem" style="color: red; text-align: center;"></p>
+
+		<center>
+			<button type="submit">Acessar</button>
+		</center>
+
+	</form>
 </div>
+
+<script>
+	const form = document.querySelector("#loginForm");
+	const msg = document.querySelector("#mensagem");
+
+	form.addEventListener("submit", function(e) {
+		e.preventDefault();
+
+		const email = document.querySelector("#email").value;
+		const senha = document.querySelector("#senha").value;
+
+		if (email === "" || senha === "") {
+			msg.textContent = "Preencha todos os campos";
+			return;
+		}
+
+		if (senha.length < 6) {
+			msg.textContent = "A senha deve ter pelo menos 6 caracteres";
+			return;
+		}
+
+		msg.style.color = "green";
+		msg.textContent = "Login realizado com sucesso!";
+	});
+</script>
+
 </body>
 </html>
